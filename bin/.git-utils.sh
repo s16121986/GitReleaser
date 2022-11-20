@@ -19,12 +19,12 @@ function is_tag_exists {
 	fi
 }
 function is_workspace_clean {
-	if [ -n "$(git status --porcelain)" ]
-	#if git diff-files --quiet --ignore-submodules --
+	#if [ -n "$(git status --porcelain)" ]
+	if git diff-files --quiet --ignore-submodules --
 	then
-		return 1
-	else
 		return 0
+	else
+		return 1
 	fi
 }
 

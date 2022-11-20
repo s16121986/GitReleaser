@@ -8,7 +8,7 @@ source "${SCRIPT_PATH}/.script-utils.sh"
 source "${SCRIPT_PATH}/.branch-utils.sh"
 source "${SCRIPT_PATH}/.version-utils.sh"
 
-# validates
+# validate nothing to pull or commit
 validate_workspace
 
 debug "Current version: ${CURRENT_VERSION}"
@@ -17,6 +17,7 @@ debug "Current version: ${CURRENT_VERSION}"
 version_patch
 debug "Patched version: ${CURRENT_VERSION}"
 validate_tag "${CURRENT_VERSION}"
+validate_branch_exists "fix-${CURRENT_VERSION}"
 
 # create branch
 branch_create "fix-${CURRENT_VERSION}" "main"

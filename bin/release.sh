@@ -11,11 +11,11 @@ ARGS="$(printf "${1+ %q}" "$@")"
 #ARGS="$@"
 
 case $ACTION in
-  "create-feat"|"fc")
+  "create-feat"|"feat")
     /bin/bash -c "${SCRIPT_PATH}/create-feat.sh${ARGS}"
     ;;
 
-  "merge-feat"|"fm")
+  "merge-feat")
     /bin/bash -c "${SCRIPT_PATH}/merge-feat.sh${ARGS}"
     ;;
 
@@ -23,16 +23,20 @@ case $ACTION in
     /bin/bash -c "${SCRIPT_PATH}/create-fix.sh${ARGS}"
     ;;
 
-  "merge-fix"|"fm")
+  "merge-fix")
     /bin/bash -c "${SCRIPT_PATH}/merge-fix.sh${ARGS}"
     ;;
 
-  "create-rc"|"fix")
+  "create-rc"|"rc")
     /bin/bash -c "${SCRIPT_PATH}/create-rc.sh${ARGS}"
     ;;
 
-  "merge-rc"|"fm")
+  "merge-rc")
     /bin/bash -c "${SCRIPT_PATH}/merge-rc.sh${ARGS}"
+    ;;
+
+  "merge")
+    /bin/bash -c "${SCRIPT_PATH}/merge.sh${ARGS}"
     ;;
 
   "branch-delete"|"bd")

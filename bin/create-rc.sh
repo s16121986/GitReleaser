@@ -16,7 +16,7 @@ fi
 
 PATCH=$1
 
-# validates
+# validate branch is "dev" and nothing to pull or commit
 validate_branch "dev"
 validate_workspace
 
@@ -35,6 +35,9 @@ else
 fi
 
 debug "Release version: ${CURRENT_VERSION}"
+
+validate_tag "${CURRENT_VERSION}"
+validate_branch_exists "rc-${CURRENT_VERSION}"
 
 # create branch
 branch_create "rc-${CURRENT_VERSION}" "dev"

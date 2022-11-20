@@ -11,8 +11,7 @@ source "${SCRIPT_PATH}/.version-utils.sh"
 # validates
 validate_branch_prefix "fix-"
 validate_tag "${CURRENT_VERSION}"
-git_reset
-#validate_workspace
+validate_workspace
 
 gsv-changelog -i "release/${version_release}/CHANGELOG.md" -s
 branch_add_and_commit "chore(release): ${CURRENT_BRANCH} changelog update"

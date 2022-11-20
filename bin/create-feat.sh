@@ -14,10 +14,9 @@ then
   exit 2
 fi
 
-#if is_branch_exists $1
-
-# validates
+# validate nothing to pull or commit and branch not exists
 validate_workspace
+validate_branch_exists "feat-${1}"
 
 BRANCH_VERSION=$1
 

@@ -10,8 +10,7 @@ source "${SCRIPT_PATH}/.version-utils.sh"
 
 # validates
 validate_branch_prefix "rc-"
-git_reset
-#validate_workspace
+validate_workspace
 
 debug "Current branch: ${CURRENT_BRANCH}"
 debug "Release version: ${CURRENT_VERSION}"
@@ -36,4 +35,4 @@ else
 	branch_merge_to "dev"
 fi
 
-debug "Branch merged!"
+debug "Branch merged! Current version is ${CURRENT_VERSION}."

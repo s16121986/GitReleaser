@@ -9,8 +9,7 @@ source "${SCRIPT_PATH}/.branch-utils.sh"
 
 # validates
 validate_branch_prefix "feat-"
-git_reset
-#validate_workspace
+validate_workspace
 
 gsv-changelog "CHANGELOG.md"
 
