@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+git reset --hard && git clean -df
+git pull
+
+debug "Composer and npm update..."
+composer install
+npm install
+npx browserslist@latest --update-db
+
+debug "Database migrations..."
+php bin/artisan release:migrate
+
+debug "Translations update..."
+php bin/artisan translation:sync
+php bin/artisan translation:mix-locale
+
+php bin/artisan queue:restart
+
+debug "NPM run prod..."
+npm run prod
+
+debug "Pull complete"
