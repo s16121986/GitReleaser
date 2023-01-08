@@ -2,48 +2,32 @@
 
 set -e
 
-SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export ROOT_PATH
 
 # arguments
-ACTION=$1
+TYPE=$1
 shift
-ARGS="$(printf "${1+ %q}" "$@")"
-#ARGS="$@"
 
-case $ACTION in
-  "create-feat"|"feat")
-    /bin/bash -c "${SCRIPT_PATH}/create-feat.sh${ARGS}"
-    ;;
+case $TYPE in
+"feat" | "fix" | "rc")
+  ACTION=$1
+  shift
+  ARGS="$(printf "${1+ %q}" "$@")"
 
-  "merge-feat")
-    /bin/bash -c "${SCRIPT_PATH}/merge-feat.sh${ARGS}"
-    ;;
+  if [ "$ACTION" = "start" ] | [ "$ACTION" = "merge" ] | [ "$ACTION" = "finish" ] | [ "$ACTION" = "help" ]; then
+    /bin/bash -c "${ROOT_PATH}/${TYPE}/${ACTION}.sh${ARGS}"
+  else
+    echo "unknown action"
+  fi
+  ;;
 
-  "create-fix"|"fix")
-    /bin/bash -c "${SCRIPT_PATH}/create-fix.sh${ARGS}"
-    ;;
+"branch-delete" | "bd")
+  ARGS="$(printf "${1+ %q}" "$@")"
+  /bin/bash -c "${ROOT_PATH}/branch-delete.sh${ARGS}"
+  ;;
 
-  "merge-fix")
-    /bin/bash -c "${SCRIPT_PATH}/merge-fix.sh${ARGS}"
-    ;;
-
-  "create-rc"|"rc")
-    /bin/bash -c "${SCRIPT_PATH}/create-rc.sh${ARGS}"
-    ;;
-
-  "merge-rc")
-    /bin/bash -c "${SCRIPT_PATH}/merge-rc.sh${ARGS}"
-    ;;
-
-  "merge")
-    /bin/bash -c "${SCRIPT_PATH}/merge.sh${ARGS}"
-    ;;
-
-  "branch-delete"|"bd")
-    /bin/bash -c "${SCRIPT_PATH}/branch-delete.sh${ARGS}"
-    ;;
-
-  *)
-    echo -n "unknown"
-    ;;
+*)
+  echo "unknown"
+  ;;
 esac

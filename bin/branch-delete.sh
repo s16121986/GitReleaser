@@ -4,7 +4,7 @@ set -e
 
 # boot
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${SCRIPT_PATH}/.git-utils.sh"
+source "${SCRIPT_PATH}/util/.git-utils.sh"
 
 if [[ "${1}" = "dev" ]] || [[ "${1}" = "main" ]]
 then

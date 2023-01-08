@@ -3,15 +3,18 @@
 set -e
 
 # boot
-SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${SCRIPT_PATH}/.script-utils.sh"
-source "${SCRIPT_PATH}/.branch-utils.sh"
-source "${SCRIPT_PATH}/.version-utils.sh"
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_PATH}/util/.script-utils.sh"
+source "${SCRIPT_PATH}/util/.branch-utils.sh"
+source "${SCRIPT_PATH}/util/.version-utils.sh"
 
 # validate nothing to pull or commit
 validate_workspace
 
 debug "Current version: ${CURRENT_VERSION}"
+
+git checkout main
+git pull
 
 # increment version
 version_patch

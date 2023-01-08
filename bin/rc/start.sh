@@ -16,8 +16,7 @@ fi
 
 PATCH=$1
 
-# validate branch is "dev" and nothing to pull or commit
-validate_branch "dev"
+# validate nothing to pull or commit
 validate_workspace
 
 debug "Current version: ${CURRENT_VERSION}"
@@ -47,7 +46,7 @@ branch_create "rc-${CURRENT_VERSION}" "dev"
 version_update
 
 mkdir -p "$PWD/release/${CURRENT_VERSION}"
-gsv-changelog "release/${CURRENT_VERSION}/CHANGELOG.md"
+gsv-changelog -i "release/${CURRENT_VERSION}/CHANGELOG.md" -s
 
 # commit changes
 branch_add_and_commit "chore(release): ${CURRENT_BRANCH} branch setup"

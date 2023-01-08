@@ -8,7 +8,7 @@ ARGS="$(printf "${1+ %q}" "$@")"
 
 if [[ $CURRENT_BRANCH = feat-* ]]
 then
-    /bin/bash -c "${SCRIPT_PATH}/merge-feat.sh${ARGS}"
+    /bin/bash -c "${SCRIPT_PATH}/feat/${}.sh${ARGS}"
 elif [[ $CURRENT_BRANCH = fix-* ]]
 then
     /bin/bash -c "${SCRIPT_PATH}/merge-fix.sh${ARGS}"
