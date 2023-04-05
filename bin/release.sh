@@ -15,7 +15,7 @@ case $TYPE in
   shift
   ARGS="$(printf "${1+ %q}" "$@")"
 
-  if [ "$ACTION" = "start" ] | [ "$ACTION" = "merge" ] | [ "$ACTION" = "finish" ] | [ "$ACTION" = "help" ]; then
+  if [ "$ACTION" = "start" ] || [ "$ACTION" = "merge" ] || [ "$ACTION" = "finish" ] || [ "$ACTION" = "help" ]; then
     /bin/bash -c "${ROOT_PATH}/${TYPE}/${ACTION}.sh${ARGS}"
   else
     echo "unknown action"

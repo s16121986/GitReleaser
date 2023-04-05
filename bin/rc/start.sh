@@ -3,14 +3,13 @@
 set -e
 
 # boot
-SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_PATH}/.script-utils.sh"
 source "${SCRIPT_PATH}/.branch-utils.sh"
 source "${SCRIPT_PATH}/.version-utils.sh"
 
-if [[ $# -ne 1 ]]
-then
-  echo 'Usage: checkout-rc.sh <patch>'
+if [[ $# -ne 1 ]]; then
+  echo 'Usage: release feat start <patch>'
   exit 2
 fi
 
@@ -22,12 +21,10 @@ validate_workspace
 debug "Current version: ${CURRENT_VERSION}"
 
 # increment version
-if [[ "${PATCH}" = "major" ]]
-then
-	version_major
-elif [[ "${PATCH}" = "minor" ]]
-then
-	version_minor
+if [[ "${PATCH}" = "major" ]]; then
+  version_major
+elif [[ "${PATCH}" = "minor" ]]; then
+  version_minor
 else
   echo 'Usage: checkout-rc.sh "major|minor"'
   exit 2
